@@ -11,17 +11,21 @@
 </head>
 
 <body>
+     {{>header}}
     <form id='myform'>
         <button id='btn'>show the cards</button>
     </form>
+     {{#each data}}
     <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" id="cardimg">
+        <img src="" class="card-img-top" id="cardimg">
         <div class="card-body">
             <h5 class="card-title" id="title"></h5>
             <p class="card-text" id="description"></p>
              <p id='error'></p>
         </div>
     </div>
+      {{/each}}
+       {{>footer }}
     <script src="./js/js.js"></script>
 </body>
 

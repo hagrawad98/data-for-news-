@@ -8,18 +8,25 @@ app.use(express.static(publicDirectory))
 app.set('view engine','hbs');
 const viewspath =path.join(__dirname,'../templete/views')
 app.set('views',viewspath)
+const hbs = require('hbs')
+const pathPartiales = path.join(__dirname,'../templates/partials')
+hbs.registerPartials(pathPartiales)
 const news =require('./tools/news')
 app.get('/news',(req,res)=>{
     if(!req.query.address){
-          return res.send({error:'you must provide address'})
+          return res.send({error:'you must provide  correct address'})
         }
         news(req.query.address,(error,data)=>{
-          if(error){
+        if(error){
             return res.send({error})
           }
-            res.send({
-                articles:data.articles,
-            })
+            res.send(
+              {
+                title:'Welcome to our News page',
+                name:'Hagar',
+                articles:data.articles
+              }
+              )
           })
         })
 app.get('*',(req,res)=>{
